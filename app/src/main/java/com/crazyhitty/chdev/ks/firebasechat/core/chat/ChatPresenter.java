@@ -1,6 +1,6 @@
 package com.crazyhitty.chdev.ks.firebasechat.core.chat;
 
-import android.app.Activity;
+import android.content.Context;
 
 import com.crazyhitty.chdev.ks.firebasechat.models.Chat;
 
@@ -21,13 +21,13 @@ public class ChatPresenter implements ChatContract.Presenter, ChatContract.OnSen
     }
 
     @Override
-    public void sendMessage(Activity activity, Chat chat, String receiverFirebaseToken) {
-        mChatInteractor.sendMessageToFirebaseUser(activity, chat, receiverFirebaseToken);
+    public void sendMessage(Context context, Chat chat, String receiverFirebaseToken) {
+        mChatInteractor.sendMessageToFirebaseUser(context, chat, receiverFirebaseToken);
     }
 
     @Override
-    public void getMessage(Activity activity, String senderUid, String receiverUid) {
-        mChatInteractor.getMessageFromFirebaseUser(activity, senderUid, receiverUid);
+    public void getMessage(String senderUid, String receiverUid) {
+        mChatInteractor.getMessageFromFirebaseUser(senderUid, receiverUid);
     }
 
     @Override

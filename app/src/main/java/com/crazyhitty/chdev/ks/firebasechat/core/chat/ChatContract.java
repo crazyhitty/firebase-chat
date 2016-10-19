@@ -1,6 +1,6 @@
 package com.crazyhitty.chdev.ks.firebasechat.core.chat;
 
-import android.app.Activity;
+import android.content.Context;
 
 import com.crazyhitty.chdev.ks.firebasechat.models.Chat;
 
@@ -22,15 +22,15 @@ public interface ChatContract {
     }
 
     interface Presenter {
-        void sendMessage(Activity activity, Chat chat, String receiverFirebaseToken);
+        void sendMessage(Context context, Chat chat, String receiverFirebaseToken);
 
-        void getMessage(Activity activity, String senderUid, String receiverUid);
+        void getMessage(String senderUid, String receiverUid);
     }
 
     interface Interactor {
-        void sendMessageToFirebaseUser(Activity activity, Chat chat, String receiverFirebaseToken);
+        void sendMessageToFirebaseUser(Context context, Chat chat, String receiverFirebaseToken);
 
-        void getMessageFromFirebaseUser(Activity activity, String senderUid, String receiverUid);
+        void getMessageFromFirebaseUser(String senderUid, String receiverUid);
     }
 
     interface OnSendMessageListener {

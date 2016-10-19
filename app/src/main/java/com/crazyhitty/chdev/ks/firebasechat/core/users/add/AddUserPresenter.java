@@ -1,6 +1,6 @@
 package com.crazyhitty.chdev.ks.firebasechat.core.users.add;
 
-import android.app.Activity;
+import android.content.Context;
 
 import com.google.firebase.auth.FirebaseUser;
 
@@ -20,8 +20,8 @@ public class AddUserPresenter implements AddUserContract.Presenter, AddUserContr
     }
 
     @Override
-    public void addUser(Activity activity, FirebaseUser firebaseUser) {
-        mAddUserInteractor.addUserToDatabase(activity, firebaseUser);
+    public void addUser(Context context, FirebaseUser firebaseUser) {
+        mAddUserInteractor.addUserToDatabase(context, firebaseUser);
     }
 
     @Override

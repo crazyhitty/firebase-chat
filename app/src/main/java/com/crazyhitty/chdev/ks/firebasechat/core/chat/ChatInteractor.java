@@ -1,6 +1,6 @@
 package com.crazyhitty.chdev.ks.firebasechat.core.chat;
 
-import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import com.crazyhitty.chdev.ks.firebasechat.fcm.FcmNotificationBuilder;
@@ -41,7 +41,7 @@ public class ChatInteractor implements ChatContract.Interactor {
     }
 
     @Override
-    public void sendMessageToFirebaseUser(final Activity activity, final Chat chat, final String receiverFirebaseToken) {
+    public void sendMessageToFirebaseUser(final Context context, final Chat chat, final String receiverFirebaseToken) {
         final String room_type_1 = chat.senderUid + "_" + chat.receiverUid;
         final String room_type_2 = chat.receiverUid + "_" + chat.senderUid;
 
@@ -59,13 +59,13 @@ public class ChatInteractor implements ChatContract.Interactor {
                 } else {
                     Log.e(TAG, "sendMessageToFirebaseUser: success");
                     databaseReference.child(Constants.ARG_CHAT_ROOMS).child(room_type_1).child(String.valueOf(chat.timestamp)).setValue(chat);
-                    getMessageFromFirebaseUser(activity, chat.senderUid, chat.receiverUid);
+                    getMessageFromFirebaseUser(chat.senderUid, chat.receiverUid);
                 }
                 // send push notification to the receiver
                 sendPushNotificationToReceiver(chat.sender,
                         chat.message,
                         chat.senderUid,
-                        new SharedPrefUtil(activity.getApplicationContext()).getString(Constants.ARG_FIREBASE_TOKEN),
+                        new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN),
                         receiverFirebaseToken);
                 mOnSendMessageListener.onSendMessageSuccess();
             }
@@ -93,7 +93,7 @@ public class ChatInteractor implements ChatContract.Interactor {
     }
 
     @Override
-    public void getMessageFromFirebaseUser(Activity activity, String senderUid, String receiverUid) {
+    public void getMessageFromFirebaseUser(String senderUid, String receiverUid) {
         final String room_type_1 = senderUid + "_" + receiverUid;
         final String room_type_2 = receiverUid + "_" + senderUid;
 

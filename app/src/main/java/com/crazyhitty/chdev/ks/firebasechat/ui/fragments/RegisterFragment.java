@@ -100,7 +100,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
     public void onRegistrationSuccess(FirebaseUser firebaseUser) {
         mProgressDialog.setMessage(getString(R.string.adding_user_to_db));
         Toast.makeText(getActivity(), "Registration Successful!", Toast.LENGTH_SHORT).show();
-        mAddUserPresenter.addUser(getActivity(), firebaseUser);
+        mAddUserPresenter.addUser(getActivity().getApplicationContext(), firebaseUser);
     }
 
     @Override

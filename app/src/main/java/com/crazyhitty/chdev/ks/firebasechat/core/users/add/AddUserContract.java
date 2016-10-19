@@ -1,6 +1,6 @@
 package com.crazyhitty.chdev.ks.firebasechat.core.users.add;
 
-import android.app.Activity;
+import android.content.Context;
 
 import com.google.firebase.auth.FirebaseUser;
 
@@ -18,11 +18,11 @@ public interface AddUserContract {
     }
 
     interface Presenter {
-        void addUser(Activity activity, FirebaseUser firebaseUser);
+        void addUser(Context context, FirebaseUser firebaseUser);
     }
 
     interface Interactor {
-        void addUserToDatabase(Activity activity, FirebaseUser firebaseUser);
+        void addUserToDatabase(Context context, FirebaseUser firebaseUser);
     }
 
     interface OnUserDatabaseListener {
